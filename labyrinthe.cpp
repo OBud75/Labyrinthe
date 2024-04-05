@@ -54,16 +54,20 @@ int main()
 {
     int x = 0;
     int y = 0;
+    auto EXITMESSAGE = "Bravo vous avez trouve la sortie!";
+    auto MOVEIMPOSSIBLEMESSAGE = "Mouvement impossible !";
+    auto SELECTMOVEMESSAGE = "Deplacez-vous (haut (z), bas (s), droite (d), gauche (g)): ";
+
     vector<vector<char>> map = loadMap("carte.txt", x, y);
     cout << "Voulez-vous que les murs soient visibles (Cela rajoute de la difficulte ou non)? (o/n): ";
     char choice;
     cin >> choice;
-    showWalls = (choice == 'o' || choice == 'O');
+    showWalls = (choice == 'o' or choice == 'O');
 
     while (true) {
         int dx = 0, dy = 0;
         printMap(map);
-        cout << "Deplacez-vous (haut (z), bas (s), droite (d), gauche (g)): ";
+        cout << SELECTMOVEMESSAGE;
         char movement;
         cin >> movement;
 
@@ -76,7 +80,7 @@ int main()
         int newX = x + dx, newY = y + dy;
         if (newX >= 0 && newX < map[0].size() && newY >= 0 && newY < map.size()) {
             if (map[newY][newX] == END) {
-                cout << "Bravo vous avez trouve la sortie!" << endl;
+                cout << EXITMESSAGE << endl;
                 break;
             } else if (map[newY][newX] != WALL) {
                 map[y][x] = VOID;
@@ -84,9 +88,9 @@ int main()
                 y = newY;
                 map[y][x] = PLAYER;
             } else
-                cout << "Mouvement impossible !" << endl;
+                cout << MOVEIMPOSSIBLEMESSAGE << endl;
         } else
-            cout << "Mouvement impossible !" << endl;
+            cout << MOVEIMPOSSIBLEMESSAGE << endl;
     }
     return (0);
 }

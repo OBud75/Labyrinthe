@@ -1,0 +1,18 @@
+D'une manière générale dans un programme fait pour potentiellement ne jamais s'arreter (contrairement à un script), il faut avoir une bonne raison pour déclarer des variables globales.
+On préfère en général encapsuler ces valeurs dans des classes et fonctions. (Ce n'est pas forcément le cas et ici cette solution est acceptable dans le sens où le système reste très simple, cela peut vite se retourner contre vous s'il évolue)
+
+Utilisez les méthodes qui viennent avec les objets tant que possible,
+par exemple map.get(y).get(x) au lieu de map[y][x]
+Cela vous assure que l'objet est sensé faire ce que vous demandez, et ce sans passer par un logique "bas niveau" avec [] qui permet en réalité de faite tout et n'importe quoi.
+Vous aurez au passage une meilleure gestion des erreurs.
+
+A l'exception de X et Y, les noms sont explicites et aident à comprendre le code.
+Il est préférable de déclarer les messages à part, surtout si vous les réutilisez dans la boucle du jeu afin de ne pas réinitialiser la même variable à chaque loop.
+Idéalement on encapsulera les messages dans une structure appropriée.
+De même pour le bout de logique qui déplace le personnage.
+
+Dans le cadre du cours, on aurait apprécié que les responsabilités soient données à des classes (Map et Player par exemple).
+Encore une fois, pour cet exercice la solution proposée est acceptable et directe (ce qui est souvent apprécié en programmation).
+Des que le code devra accepter de nouvelles fonctionnalités (amasser des objets par exemple), il sera à priori necessaire de refactoriser le code en classes etc.
+
+14/20
